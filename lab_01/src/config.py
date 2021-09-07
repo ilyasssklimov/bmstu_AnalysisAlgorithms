@@ -1,0 +1,3 @@
+ITER = 1000
+MAX_TIME = 1e9
+TO_SEC = 1e9
