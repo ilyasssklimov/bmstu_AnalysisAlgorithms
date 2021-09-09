@@ -51,7 +51,8 @@ class Algorithm:
                 self.algorithms_keys[self.name](str_1, str_2)
                 total += process_time_ns() - start
 
-            return np.format_float_scientific(total / last / TO_SEC, precision=8)
+            # return np.format_float_scientific(total / last / TO_SEC, precision=20)
+            return total / last / TO_SEC
         else:
             raise AlgorithmError
 
