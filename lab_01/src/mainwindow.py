@@ -3,8 +3,7 @@ from design import Ui_MainWindow
 from PyQt5 import QtWidgets
 import matplotlib
 import matplotlib.pyplot as plt
-import random
-import string
+from random_string import RandomString
 
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -33,7 +32,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.search.clicked.connect(self.get_distance)
 
         matplotlib.use('Qt5Agg')
-        self.graph_lev_rec.clicked.connect(self.graphics_lev_rec)
+        self.graph_lev_cache.clicked.connect(self.graphics_lev_cache)
+        self.graph_lev_dam.clicked.connect(self.graphics_lev_dam)
+        self.graph_rec_cache.clicked.connect(self.graphics_rec_cache)
+
+        self.get_peak_memory.clicked.connect(self.peak_memory)
 
     def change_algorithm(self, new_algorithm):
         self.cur_algorithm = new_algorithm
@@ -47,24 +50,53 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         )
         self.result_string.setText(f'Редакционное расстояние = {distance}')
 
-    def graphics_lev_rec(self):
+    def init_graphics_labels(self, n):
+        plt.title('График зависимости времени от размера строк')
+        plt.xlabel('Процессорное время выполнения алгоритма')
+        plt.ylabel('Размер строк')
+        plt.figure(n)
+
+    def graphics_lev_cache(self):
         x_lev_mat = []
         x_lev_rec_cache = []
         y = []
-        letters = string.ascii_lowercase
-        # name='График зависимости времени от размерности строк'
-        for n in range(10, 101, 10):
-            str_1 = ''.join(random.choice(letters) for _ in range(n))
-            str_2 = ''.join(random.choice(letters) for _ in range(n))
 
+        for n in range(10, 101, 10):
+            str_1, str_2 = RandomString(n), RandomString(n)
             x_lev_mat.append(self.algorithms['lev_mat'].get_time(str_1, str_2))
             x_lev_rec_cache.append(self.algorithms['lev_rec_cache'].get_time(str_1, str_2))
             y.append(n)
 
+        self.init_graphics_labels(1)
         plt.plot(x_lev_mat, y, marker='o', color='red', label='Левенштейн - матрично')
         plt.plot(x_lev_rec_cache, y, marker='o', color='green', label='Левенштейн - рекурсвино с кэшем')
         plt.legend()
         plt.show()
 
+    def graphics_lev_dam(self):
+        x_lev_rec = []
+        x_dam_lev = []
+        y = []
 
+        for n in range(2, 10):
+            str_1, str_2 = RandomString(n), RandomString(n)
+            x_lev_rec.append(self.algorithms['lev_rec'].get_time(str_1, str_2))
+            x_dam_lev.append(self.algorithms['dam_lev'].get_time(str_1, str_2))
+            y.append(n)
+
+        plt.close(1)
+        self.init_graphics_labels(2)
+        plt.plot(x_lev_rec, y, marker='o', color='blue', label='Левенштейн - рекурсивно')
+        plt.plot(x_dam_lev, y, marker='o', color='black', label='Дамерау-Левенштейн - рекурсвино')
+        plt.legend()
+        plt.show()
+
+    def graphics_rec_cache(self):
+        pass
+
+    def peak_memory(self):
+        memory = self.algorithms[self.cur_algorithm].get_memory(
+            self.edit_str_1.text(), self.edit_str_2.text()
+        )
+        print(memory)
 

@@ -3,6 +3,7 @@ from functools import lru_cache
 import numpy as np
 from pprint import pprint
 from time import process_time_ns
+import tracemalloc
 
 
 class AlgorithmError(Exception):
@@ -53,6 +54,15 @@ class Algorithm:
 
             # return np.format_float_scientific(total / last / TO_SEC, precision=20)
             return total / last / TO_SEC
+        else:
+            raise AlgorithmError
+
+    def get_memory(self, str_1, str_2):
+        if self.name in self.algorithms_keys:
+            tracemalloc.clear_traces()
+            tracemalloc.start()
+            self.algorithms_keys[self.name](str_1, str_2)
+            return tracemalloc.get_traced_memory()[1]
         else:
             raise AlgorithmError
 

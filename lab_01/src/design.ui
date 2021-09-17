@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>485</width>
-    <height>752</height>
+    <width>472</width>
+    <height>834</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>60</x>
       <y>130</y>
-      <width>392</width>
+      <width>351</width>
       <height>231</height>
      </rect>
     </property>
@@ -166,11 +166,11 @@
      <string>Редакционное расстояние = ?</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="graph_lev_rec">
+   <widget class="QPushButton" name="graph_lev_cache">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>630</y>
+      <y>610</y>
       <width>91</width>
       <height>51</height>
      </rect>
@@ -187,9 +187,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>560</y>
-      <width>251</width>
+      <x>150</x>
+      <y>540</y>
+      <width>161</width>
       <height>21</height>
      </rect>
     </property>
@@ -202,7 +202,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Замеры времени и памяти</string>
+     <string>Замеры времени</string>
     </property>
    </widget>
    <widget class="Line" name="line">
@@ -222,7 +222,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>600</y>
+      <y>580</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -240,7 +240,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>600</y>
+      <y>580</y>
       <width>81</width>
       <height>16</height>
      </rect>
@@ -258,7 +258,7 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>630</y>
+      <y>610</y>
       <width>91</width>
       <height>51</height>
      </rect>
@@ -272,11 +272,11 @@
      <string>Вывести</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="graph_lev_rec_2">
+   <widget class="QPushButton" name="graph_rec_cache">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>630</y>
+      <x>340</x>
+      <y>610</y>
       <width>91</width>
       <height>51</height>
      </rect>
@@ -294,13 +294,96 @@
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>600</y>
-      <width>55</width>
+      <y>580</y>
+      <width>81</width>
       <height>16</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>(2) - (3)</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>580</y>
+      <width>20</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>580</y>
+      <width>20</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="get_peak_memory">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>720</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Вывести</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>690</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>50</weight>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Замеры памяти</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>670</y>
+      <width>401</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
     </property>
    </widget>
   </widget>
@@ -309,7 +392,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>485</width>
+     <width>472</width>
      <height>26</height>
     </rect>
    </property>
