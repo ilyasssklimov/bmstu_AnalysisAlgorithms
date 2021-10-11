@@ -100,18 +100,20 @@ def comb_sort(a: list) -> None:
 
     n = len(a)
     factor = 1.247
-    step = n - 1
+    swaps = True
+    step = n
 
-    while step >= 1:
-        for i in mp.frange(n - step):
-            if a[i] > a[i + step]:
-                a[i], a[i + step] = a[i + step], a[i]
-        step = int(step // factor)
+    while step > 1 or swaps:
+        swaps = False
+        step = int(step / factor)
+        if step < 1:
+            step = 1
 
-    for _ in range(2):
-        for i in range(n - 1):
-            if a[i] > a[i + 1]:
-                a[i], a[i + 1] = a[i + 1], a[i]
+        for i in range(n - step):
+            j = i + step
+            if a[i] > a[j]:
+                a[i], a[j] = a[j], a[i]
+                swaps = True
 
 
 def gnome_sort(a: list) -> None:
@@ -130,8 +132,6 @@ def gnome_sort(a: list) -> None:
                 i, j = j, j + 1
 
 
-# Процедура для преобразования в двоичную кучу поддерева с корневым узлом i, что является индексом в arr[].
-# n - размер кучи
 def heapify(arr, n, i):
     largest = i # Initialize largest as root
     l = 2 * i + 1   # left = 2*i + 1
@@ -154,13 +154,10 @@ def heapify(arr, n, i):
         # Применяем heapify к корню.
         heapify(arr, n, largest)
 
-# Основная функция для сортировки массива заданного размера
-
 
 def heap_sort(arr):
     n = len(arr)
 
-    # Построение max-heap.
     for i in range(n, -1, -1):
         heapify(arr, n, i)
 

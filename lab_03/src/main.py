@@ -8,8 +8,8 @@ def output_menu(chosen_sorting: str) -> None:
           f'2) Use chosen sorting (\033[34m{chosen_sorting}\033[0m)\n'
           f'3) Test sorting by random numbers (\033[34m{chosen_sorting}\033[0m)\n'
           '\033[33m-----------------All sorting----------------\033[0m\n'
-          '4) Use all sorting(\033[34mcomb, gnome, heap\033[0m)\n'
-          '5) Test all sorting by random numbers(\033[34mcomb, gnome, heap\033[0m)\n'
+          '4) Use all sorting (\033[34mcomb, gnome, heap\033[0m)\n'
+          '5) Test all sorting by random numbers (\033[34mcomb, gnome, heap\033[0m)\n'
           '\033[33m--------------------------------------------\033[0m\n'
           '0) Exit\n')
 
