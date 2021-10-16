@@ -39,7 +39,7 @@ class Sorting:
         self.sorting = {
             'comb': comb_sort,
             'gnome': gnome_sort,
-            'heap': heap_sort
+            'selection': selection_sort
         }
         self.name = None
 
@@ -132,36 +132,22 @@ def gnome_sort(a: list) -> None:
                 i, j = j, j + 1
 
 
-def heapify(arr, n, i):
-    largest = i # Initialize largest as root
-    l = 2 * i + 1   # left = 2*i + 1
-    r = 2 * i + 2   # right = 2*i + 2
+def selection_sort(a: list) -> None:
+    if not isinstance(a, list):
+        raise ListParameterError
 
-  # Проверяем существует ли левый дочерний элемент больший, чем корень
+    n = len(a)
 
-    if l < n and arr[i] < arr[l]:
-        largest = l
+    for i in range(n // 2):
+        max_ind = i
+        min_ind = i
+        for j in range(i, n - i):
+            if a[j] > a[max_ind]:
+                max_ind = j
+            if a[j] < a[min_ind]:
+                min_ind = j
 
-    # Проверяем существует ли правый дочерний элемент больший, чем корень
-
-    if r < n and arr[largest] < arr[r]:
-        largest = r
-
-    # Заменяем корень, если нужно
-    if largest != i:
-        arr[i],arr[largest] = arr[largest],arr[i] # свап
-
-        # Применяем heapify к корню.
-        heapify(arr, n, largest)
-
-
-def heap_sort(arr):
-    n = len(arr)
-
-    for i in range(n, -1, -1):
-        heapify(arr, n, i)
-
-    # Один за другим извлекаем элементы
-    for i in range(n-1, 0, -1):
-        arr[i], arr[0] = arr[0], arr[i] # свап
-        heapify(arr, i, 0)
+        a[max_ind], a[n - i - 1] = a[n - i - 1], a[max_ind]
+        if min_ind == n - i - 1:
+            min_ind = max_ind
+        a[min_ind], a[i] = a[i], a[min_ind]
